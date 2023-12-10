@@ -28,5 +28,8 @@ function tick() {
   window.setTimeout(tick, (60-now.getSeconds())*1000 - now.getMilliseconds());
 }
 
+document.addEventListener("pointerdown", () => {
+  document.documentElement.requestFullscreen();
+}, {once: true});
 tick();
 </script>
