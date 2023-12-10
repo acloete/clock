@@ -21,3 +21,12 @@ div {
 }
 </style>
 <div>09:45</div>
+<script type="module">
+function tick() {
+  const now = new Date();
+  document.getElementsByTagName('div')[0].innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+  window.setTimeout(tick, (60-now.getSeconds())*1000 - now.getMilliseconds());
+}
+
+tick();
+</script>
