@@ -11,7 +11,7 @@ body {
   background-color: #000;
   color: #aaa;
 }
-div {
+.clock {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,13 +22,31 @@ div {
   height: 100%;
   width: 100%;
   user-select: none;
+  position: relative;
+}
+.buffer {
+  position: absolute;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 2s, bacground-color 2s;
+}
+.show {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 1);
 }
 </style>
-<div>09:45</div>
+<div class="clock">
+  <div>88:88</div>
+  <div class="buffer">88:88</div>
+</div>
 <script type="module">
+const bufferClasses = document.querySelector('.buffer').classList;
+const divs = [...document.querySelectorAll('.clock div')];
+
 function tick() {
   const now = new Date();
-  document.getElementsByTagName('div')[0].innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+  divs[bufferClasses.contains('show') ? 0 : 1].innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+  bufferClasses.toggle("show");
   window.setTimeout(tick, (60-now.getSeconds())*1000 - now.getMilliseconds());
 }
 
