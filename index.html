@@ -34,10 +34,12 @@ function tick() {
 
 tick();
 
-navigator.wakeLock.request();
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    navigator.wakeLock.request();
-  }
-});
+if (navigator.wakeLock) {
+  navigator.wakeLock.request();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      navigator.wakeLock.request();
+    }
+  });
+}
 </script>
