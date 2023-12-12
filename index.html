@@ -9,8 +9,11 @@ html, body {
 }
 body {
   margin: 0;
-  background-color: #000;
   color: #aaa;
+  background-color: #000;
+}
+div {
+  background-color: inherit;
 }
 .clock {
   display: flex;
@@ -28,12 +31,10 @@ body {
 .buffer {
   position: absolute;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0);
-  transition: opacity 2s, bacground-color 2s;
+  transition: opacity 2s;
 }
 .show {
   opacity: 1;
-  background-color: rgba(0, 0, 0, 1);
 }
 </style>
 <div class="clock">
